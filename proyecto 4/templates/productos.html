@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+
+<h1>Gestión de productos</h1>
+
+<div class="tarjeta">
+
+    <h2>Crear producto</h2>
+
+    <form method="POST"
+          action="{{ url_for('crear_producto') }}">
+
+        <input
+            type="text"
+            name="nombre"
+            placeholder="Nombre"
+            required
+        >
+
+        <input
+            type="text"
+            name="descripcion"
+            placeholder="Descripción"
+            required
+        >
+
+        <input
+            type="number"
+            step="0.01"
+            name="precio"
+            placeholder="Precio"
+            required
+        >
+
+        <select name="categoria_id" required>
+
+            {% for categoria in categorias %}
+
+            <option value="{{ categoria.id }}">
+                {{ categoria.nombre }}
+            </option>
+
+            {% endfor %}
+
+        </select>
+
+        <button type="submit">
+            Crear producto
+        </button>
+
+    </form>
+
+</div>
+
+
+<h2>Productos registrados</h2>
+
+<table>
+
+    <thead>
+
+        <tr>
+
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Categoría</th>
+            <th>Usuario</th>
+            <th>Acciones</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {% for producto in productos %}
+
+        <tr>
+
+            <td>{{ producto.id }}</td>
+
+            <td>{{ producto.nombre }}</td>
+
+            <td>{{ producto.descripcion }}</td>
+
+            <td>${{ "%.2f"|format(producto.precio) }}</td>
+
+            <td>{{ producto.categoria.nombre }}</td>
+
+            <td>{{ producto.usuario.nombre }}</td>
+
+            <td>
+
+                <form
+                    method="POST"
+                    action="{{ url_for('editar_producto', id=producto.id) }}"
+                >
+
+                    <input
+                        type="text"
+                        name="nombre"
+                        value="{{ producto.nombre }}"
+                        required
+                    >
+
+                    <input
+                        type="text"
+                        name="descripcion"
+                        value="{{ producto.descripcion }}"
+                        required
+                    >
+
+                    <input
+                        type="number"
+                        step="0.01"
+                        name="precio"
+                        value="{{ producto.precio }}"
+                        required
+                    >
+
+                    <select name="categoria_id">
+
+                        {% for categoria in categorias %}
+
+                        <option
+                            value="{{ categoria.id }}"
+                            {% if categoria.id == producto.categoria_id %}
+                            selected
+                            {% endif %}
+                        >
+
+                            {{ categoria.nombre }}
+
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                    <button type="submit">
+                        Actualizar
+                    </button>
+
+                </form>
+
+                <a
+                    class="eliminar"
+                    href="{{ url_for('eliminar_producto', id=producto.id) }}"
+                    onclick="return confirm('¿Eliminar este producto?')"
+                >
+                    Eliminar
+                </a>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}

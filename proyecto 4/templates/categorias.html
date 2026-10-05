@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+
+<h1>Categorías</h1>
+
+<table>
+
+    <thead>
+
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Productos registrados</th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {% for categoria in categorias %}
+
+        <tr>
+
+            <td>
+                {{ categoria.id }}
+            </td>
+
+            <td>
+                {{ categoria.nombre }}
+            </td>
+
+            <td>
+                {{ categoria.productos|length }}
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}

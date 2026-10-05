@@ -1,0 +1,127 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #222;
+}
+
+nav {
+    background: #172554;
+    color: white;
+    padding: 18px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav h2 {
+    margin: 0;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+main {
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+.inicio {
+    text-align: center;
+    background: white;
+    padding: 60px;
+    border-radius: 12px;
+}
+
+.formulario,
+.tarjeta {
+    background: white;
+    padding: 30px;
+    max-width: 600px;
+    margin: 30px auto;
+    border-radius: 12px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+button,
+.boton {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+button:hover,
+.boton:hover {
+    background: #1d4ed8;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background: #172554;
+    color: white;
+}
+
+.mensaje {
+    background: #dbeafe;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+}
+
+.eliminar {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: #dc2626;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+
+    nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav a {
+        margin: 5px;
+    }
+
+    table {
+        font-size: 12px;
+    }
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Sistema TIC</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<nav>
+
+    <h2>Sistema TIC</h2>
+
+    <div>
+
+        <a href="{{ url_for('inicio') }}">
+            Inicio
+        </a>
+
+        {% if current_user.is_authenticated %}
+
+        <a href="{{ url_for('productos') }}">
+            Productos
+        </a>
+
+        <a href="{{ url_for('categorias') }}">
+            Categorías
+        </a>
+
+        <a href="{{ url_for('logout') }}">
+            Cerrar sesión
+        </a>
+
+        {% else %}
+
+        <a href="{{ url_for('login') }}">
+            Iniciar sesión
+        </a>
+
+        <a href="{{ url_for('register') }}">
+            Registrarse
+        </a>
+
+        {% endif %}
+
+    </div>
+
+</nav>
+
+
+<main>
+
+    {% with mensajes = get_flashed_messages() %}
+
+        {% if mensajes %}
+
+            {% for mensaje in mensajes %}
+
+                <div class="mensaje">
+                    {{ mensaje }}
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+    {% block contenido %}
+
+    {% endblock %}
+
+</main>
+
+</body>
+
+</html>
